@@ -1,80 +1,80 @@
-# Taim Wetland Ontology Project 🌿🐾
+# Projeto Ontologia do Banhado do Taim
 
-![Status](https://img.shields.io/badge/Status-In%20Development-blue)
-![Course](https://img.shields.io/badge/Course-Artificial%20Intelligence-brightgreen)
-![Topic](https://img.shields.io/badge/Topic-Ontology%20%26%20Semantic%20Web-orange)
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-blue)
+![Disciplina](https://img.shields.io/badge/Disciplina-Intelig%C3%AAncia%20Artificial-brightgreen)
+![Topico](https://img.shields.io/badge/Topico-Ontologia%20%26%20Web%20Sem%C3%A2ntica-orange)
 
-## 📌 About The Project
+## Sobre o Projeto
 
-This repository contains the development of an **Ontology for the Taim Ecological Reserve (Banhado do Taim)**, situated in Rio Grande do Sul, Brazil. This project is developed as part of an Artificial Intelligence academic curriculum, aiming to apply knowledge representation techniques to a real-world environmental and social issue: **wildlife roadkills**.
+Este repositorio contem o desenvolvimento de uma **Ontologia para o Banhado do Taim**, localizado no Rio Grande do Sul. Este projeto e desenvolvido como parte da disciplina de Inteligencia Artificial, com o objetivo de aplicar tecnicas de representacao de conhecimento a um problema real de relevancia ambiental e social: **atropelamentos de fauna**.
 
-The Taim Wetland is one of the most important wetlands in southern Brazil, boasting rich biodiversity and playing an essential role in ecosystem preservation. By structuring knowledge regarding species, habitats, environmental conditions, and roadkill events, this project aims to organize and integrate currently dispersed information.
+O Banhado do Taim e uma das areas umidas mais importantes do RS, com rica biodiversidade e papel essencial na preservacao de ecossistemas. Ao estruturar o conhecimento sobre especies, habitats, condicoes ambientais e eventos de atropelamento, este trabalho busca organizar e integrar informacoes que hoje estao dispersas.
 
-## 📋 Assignment To-Do List
+## Lista de Tarefas (To-Do List)
 
-This checklist contains all the mandatory requirements from the assignment specification to ensure full completion.
+Esta lista contem todos os requisitos obrigatorios descritos na especificacao do trabalho para garantir a conclusao completa.
 
-### 1. Ontology Modeling 🧠
-- [ ] Create at least **15 classes** (Animals, Roads, Roadkill Events, Environments, etc.)
-- [ ] Define the class hierarchy.
-- [ ] Create at least **10 Object Properties**.
-- [ ] Create at least **10 Data Properties**.
-- [ ] Define property restrictions (domain, range, cardinality, etc.).
-- [ ] Model at least **one temporal relation**.
-- [ ] Model at least **one spatial relation**.
-- [ ] **MANDATORY**: Document and justify the main modeling decisions.
-- [ ] **MANDATORY**: Explain at least two alternative modeling approaches that were considered and discarded.
+### 1. Modelagem da Ontologia
+- [ ] Criar no minimo **15 classes** (Animais, Rodovias, Eventos de Atropelamento, Condicoes, etc.)
+- [ ] Definir hierarquia de classes.
+- [ ] Criar no minimo **10 propriedades de objeto** (Object Properties).
+- [ ] Criar no minimo **10 propriedades de dados** (Data Properties).
+- [ ] Definir restricoes de propriedade (dominio, alcance, cardinalidade, etc.).
+- [ ] Modelar pelo menos **uma relacao temporal**.
+- [ ] Modelar pelo menos **uma relacao espacial**.
+- [ ] **OBRIGATORIO**: Documentar e justificar as principais decisoes de modelagem.
+- [ ] **OBRIGATORIO**: Explicar pelo menos duas alternativas de modelagem que foram consideradas e descartadas.
 
-### 2. Knowledge Extraction & Sources 🌐
-- [ ] Define and document the information sources used (Wikidata, Wikipedia, DBpedia, OpenStreetMap, LLMs, etc.).
-- [ ] Describe the methodology for data extraction in the final report.
-- [ ] Discuss any limitations or potential errors in the extraction process.
+### 2. Extracao de Conhecimento e Fontes
+- [ ] Definir e documentar as fontes de informacao utilizadas (Wikidata, Wikipedia, DBpedia, OpenStreetMap, LLMs, etc.).
+- [ ] Descrever a metodologia de extracao de dados no relatorio final.
+- [ ] Discutir quaisquer limitacoes ou possiveis erros no processo de extracao.
 
-### 3. Ontology Population 📊
-- [ ] Populate the ontology with at least **100 individuals** (instances).
-- [ ] Develop an automated script (e.g., Python, NLP, LLM prompt scripts) to collect and model the knowledge into the ontology.
-- [ ] **MANDATORY**: Clearly explain how the data and individuals were generated.
-- [ ] Provide concrete examples of the instances created.
-- [ ] Discuss possible data inconsistencies or limitations.
+### 3. Povoamento da Ontologia
+- [ ] Povoar a ontologia com no minimo **100 individuos** (instancias).
+- [ ] Desenvolver um script automatizado (ex.: Python, NLP, scripts de LLM) para coletar e modelar o conhecimento na ontologia.
+- [ ] **OBRIGATORIO**: Explicar claramente como os dados e individuos foram gerados.
+- [ ] Fornecer exemplos concretos das instancias criadas.
+- [ ] Discutir possiveis inconsistencias ou limitacoes dos dados.
 
-### 4. SPARQL Queries 🔎
-- [ ] Implement a total of at least **30 SPARQL queries**.
-- [ ] Ensure queries cover the following types:
-  - [ ] Simple class-based queries.
-  - [ ] Queries involving multiple relations.
-  - [ ] Queries with filters (e.g., by time, weather conditions).
-  - [ ] Queries with aggregations.
-  - [ ] Queries representing relevant domain scenarios.
-- [ ] For each query, document: Natural language description, the SPARQL code, and the obtained result.
+### 4. Consultas SPARQL
+- [ ] Implementar um total de pelo menos **30 consultas SPARQL**.
+- [ ] Garantir que as consultas cubram os seguintes tipos:
+  - [ ] Consultas simples baseadas em classes.
+  - [ ] Consultas envolvendo multiplas relacoes.
+  - [ ] Consultas com filtros (ex.: por horario, condicoes climaticas).
+  - [ ] Consultas com agregacoes.
+  - [ ] Consultas representando cenarios relevantes do dominio.
+- [ ] Para cada consulta, documentar: Descricao em linguagem natural, o codigo SPARQL e o resultado obtido.
 
-### 5. Machine Learning Integration (Optional but Recommended) 🤖
-- [ ] Explain the ML model used (e.g., roadkill risk predictor).
-- [ ] Simulate concrete prediction examples.
-- [ ] Demonstrate how the ontology was used to generate semantic explanations for the predictions.
+### 5. Integracao com Machine Learning (Opcional)
+- [ ] Explicar o modelo de ML utilizado (ex.: preditor de risco de atropelamento).
+- [ ] Simular exemplos concretos de predicoes.
+- [ ] Demonstrar como a ontologia foi utilizada para gerar explicacoes semanticas para as predicoes.
 
-### 6. Final Deliverables 📦
-- [ ] The ontology file (`.owl`).
-- [ ] The source code for population scripts.
-- [ ] The source code for ML algorithms (if used).
-- [ ] LLM employment protocols/prompts (if used).
-- [ ] **Final PDF Report** (Must include: Protégé screenshots, graphical ontology snippets, SPARQL executions).
-- [ ] **5-minute Pitch Video** explaining the solution.
-- [ ] Prepare for the oral presentation and defense.
+### 6. Entregas Finais
+- [ ] O arquivo da ontologia (`.owl`).
+- [ ] O codigo fonte dos scripts de povoamento.
+- [ ] O codigo fonte dos algoritmos de ML (se utilizados).
+- [ ] Protocolos de emprego de LLMs (se utilizados).
+- [ ] **Relatorio Final em PDF** (Deve incluir: capturas de tela do Protege, trechos graficos da ontologia, execucoes SPARQL).
+- [ ] **Video Pitch de 5 minutos** explicando a solucao.
+- [ ] Preparacao para a apresentacao oral e defesa.
 
-## 📁 Repository Structure
+## Estrutura do Repositorio
 
 ```
-├── docs/                # Project documentation, PDF reports, and presentations
-├── ontology/            # The OWL ontology files and related models
-├── scripts/             # Python scripts for data extraction (NLP, scraping) and population
-├── sparql_queries/      # Text files containing the SPARQL queries used for inference
-└── README.md            # This file
+├── docs/                # Documentacao do projeto, relatorios em PDF e apresentacoes
+├── ontology/            # Arquivos da ontologia OWL e modelos relacionados
+├── scripts/             # Scripts Python para extracao de dados (NLP, scraping) e povoamento
+├── sparql_queries/      # Arquivos de texto contendo as consultas SPARQL
+└── README.md            # Este arquivo
 ```
 
-## 🛠️ Technologies & Tools
-- **Ontology Editor**: Protégé
-- **Languages/Frameworks**: Python, OWL, RDF, SPARQL
-- **Libraries**: `Owlready2`, `spaCy`, `BeautifulSoup`, `Requests`
+## Tecnologias e Ferramentas
+- **Editor de Ontologia**: Protege
+- **Linguagens/Frameworks**: Python, OWL, RDF, SPARQL
+- **Bibliotecas**: `Owlready2`, `spaCy`, `BeautifulSoup`, `Requests`
 
-## 🤝 Contribution & Team
-Developed for the Artificial Intelligence course.
+## Contribuicao e Equipe
+Desenvolvido para a disciplina de Inteligencia Artificial.
