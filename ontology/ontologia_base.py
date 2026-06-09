@@ -7,6 +7,7 @@ ARQUIVO_ONTO = os.path.join(os.path.dirname(__file__), "ontologia_taim.owl")
 onto = get_ontology("http://www.exemplo.org/taim#")
 
 with onto:
+    # --- CLASSES E SUBCLASSES ---
     class Animal(Thing): pass
     class Mamifero(Animal): pass
     class Ave(Animal): pass
@@ -27,6 +28,7 @@ with onto:
     class Evento(Thing): pass
     class EventoAtropelamento(Evento): pass
 
+    # --- PROPRIEDADES DE OBJETO (Relações) ---
     class envolveAnimal(ObjectProperty):
         domain = [EventoAtropelamento]
         range = [Animal]
@@ -68,6 +70,7 @@ with onto:
         domain = [EventoAtropelamento]
         range = [EventoAtropelamento]
 
+    # --- PROPRIEDADES DE DADOS (Atributos) ---
     class dataHora(DataProperty):
         domain = [EventoAtropelamento]
         range = [datetime]
