@@ -5,8 +5,8 @@ from owlready2 import get_ontology
 
 from extracao_wikipedia import obter_animais_confirmados
 
-CAMINHO_BASE = os.path.join(os.path.dirname(__file__), "..", "ontology", "ontologia_taim.owl")
-CAMINHO_POPULADO = os.path.join(os.path.dirname(__file__), "..", "ontology", "taim_ontology_populated.owl")
+CAMINHO_BASE = os.path.join(os.path.dirname(__file__), "..", "ontology", "ontologia_base.owl")
+CAMINHO_POPULADO = os.path.join(os.path.dirname(__file__), "..", "ontology", "ontologia_populada.owl")
 
 def carregar_ontologia_base():
     return get_ontology(f"file://{CAMINHO_BASE}").load()

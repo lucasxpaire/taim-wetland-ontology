@@ -2,7 +2,7 @@ import os
 from datetime import datetime
 from owlready2 import get_ontology, Thing, ObjectProperty, DataProperty
 
-ARQUIVO_ONTO = os.path.join(os.path.dirname(__file__), "ontologia_taim.owl")
+ARQUIVO_ONTO = os.path.join(os.path.dirname(__file__), "ontologia_base.owl")
 
 onto = get_ontology("http://www.exemplo.org/taim#")
 
