@@ -1,0 +1,766 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage{graphicx}
+\usepackage{geometry}
+\usepackage{listings}
+\usepackage{float}
+\geometry{a4paper, margin=2cm}
+
+\title{Relatório: Ontologia do Banhado do Taim}
+\author{Desenvolvimento Acadêmico}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Abordagem da Solução}
+Este relatório apresenta a modelagem de uma ontologia para o ecossistema do Banhado do Taim. O foco do projeto foi mapear eventos de atropelamentos de fauna na rodovia BR 471. A solução adotada foi criar um modelo limpo contendo exatamente quinze classes. A arquitetura garantiu responsabilidades claras para cada conceito ecológico.
+
+A extração de dados utilizou um algoritmo em Python para validar as espécies animais direto da Wikipedia. Em seguida, outro algoritmo simulou e injetou as instâncias na ontologia final.
+
+\section{Modelagem da Ontologia}
+A estrutura foi dividida em superclasses principais como Animal, Habitat, Rodovia, CondicaoAmbiental e Evento. O modelo contém dez propriedades de objeto que conectam esses conceitos. O modelo também possui dez propriedades de dados para atributos numéricos e textuais.
+
+A Figura 1 apresenta a hierarquia principal das classes no Protégé.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/classes.jpeg}
+\caption{Hierarquia de classes no Protégé}
+\end{figure}
+
+As propriedades de objeto definem a relação entre os conceitos. A Figura 2 ilustra a interface de criação.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/propriedadesObjeto.jpeg}
+\caption{Propriedades de Objeto}
+\end{figure}
+
+As propriedades de dados guardam métricas como coordenadas de GPS e temperatura. A Figura 3 mostra o mapeamento.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/propriedadesDados.jpeg}
+\caption{Propriedades de Dados}
+\end{figure}
+
+\section{Povoamento Automatizado}
+O povoamento da ontologia gerou 137 indivíduos concretos. O cruzamento dos animais reais extraídos da Wikipedia com KMs da BR 471 simulou acidentes de trânsito em diferentes condições climáticas.
+
+A Figura 4 comprova a geração e injeção automática dos eventos de atropelamento na classe final.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/individuos.jpeg}
+\caption{Lista de indivíduos da classe EventoAtropelamento}
+\end{figure}
+
+\section{Grafo da Ontologia}
+A visualização espacial comprova a estrutura de teia exigida no projeto. O OntoGraf gerou a visão completa das conexões entre os indivíduos de fauna e as ocorrências físicas.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{images/ontologia.jpeg}
+\caption{Grafo de conexões (OntoGraf)}
+\end{figure}
+
+\section{Protocolo de Emprego de LLMs}
+O uso de Grandes Modelos de Linguagem apoiou ativamente a construção arquitetural desta solução. O LLM serviu como assistente direto para planejamento do código Python e verificação da sintaxe OWL.
+
+O protocolo seguiu três diretrizes estritas:
+1. Validação de conhecimento extraído sobre as espécies reais do Taim.
+2. Auxílio na escrita de consultas SPARQL complexas.
+3. Geração de código automatizado e revisões estruturais para manter a base limpa e focada.
+
+Nenhum dado fictício biológico foi inventado. O LLM operou restrito às regras de lógica de banco de dados e simulação numérica.
+
+\section{Consultas SPARQL}
+As trinta consultas exigidas foram automatizadas via script Python usando a biblioteca RDFLib. O código carregou o banco de conhecimento e extraiu os relatórios abaixo. As respostas comprovam a viabilidade das perguntas lógicas.
+
+\subsection*{Categoria: Simples}
+
+\subsubsection*{Consulta 1}
+
+\textbf{Descrição:} Listar todas as Capivaras registradas na ontologia.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?capivara WHERE { ?capivara rdf:type taim:Capivara . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+Zero resultados encontrados.
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 2}
+
+\textbf{Descrição:} Listar todos os Jacarés-de-papo-amarelo registrados.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?jacare WHERE { ?jacare rdf:type taim:Jacaré-de-papo-amarelo . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+Zero resultados encontrados.
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 3}
+
+\textbf{Descrição:} Listar todos os trechos de rodovia mapeados.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho WHERE { ?trecho rdf:type taim:TrechoRodovia . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_10
+trecho: BR471_KM_11
+trecho: BR471_KM_12
+trecho: BR471_KM_13
+trecho: BR471_KM_14
+trecho: BR471_KM_15
+trecho: BR471_KM_16
+trecho: BR471_KM_17
+trecho: BR471_KM_18
+trecho: BR471_KM_19
+... (e mais 10 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 4}
+
+\textbf{Descrição:} Listar todos os Eventos de Atropelamento.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento WHERE { ?evento rdf:type taim:EventoAtropelamento . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+evento: Acidente_Taim_001
+evento: Acidente_Taim_002
+evento: Acidente_Taim_003
+evento: Acidente_Taim_004
+evento: Acidente_Taim_005
+evento: Acidente_Taim_006
+evento: Acidente_Taim_007
+evento: Acidente_Taim_008
+evento: Acidente_Taim_009
+evento: Acidente_Taim_0010
+... (e mais 50 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 5}
+
+\textbf{Descrição:} Listar todas as Condições Climáticas registradas.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?clima WHERE { ?clima rdf:type taim:CondicaoClimatica . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+clima: Clima_Chuva_Forte_0
+clima: Clima_Neblina_Densa_1
+clima: Clima_Ensolarado_2
+clima: Clima_Nublado_3
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 6}
+
+\textbf{Descrição:} Listar todos os habitats do tipo Banhado.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?banhado WHERE { ?banhado rdf:type taim:Banhado . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+banhado: Banhado_da_Mangueira
+banhado: Banhado_do_Nicola
+banhado: Banhado_Central
+\end{lstlisting}
+
+\vspace{1cm}
+\subsection*{Categoria: Múltiplas Relações}
+
+\subsubsection*{Consulta 7}
+
+\textbf{Descrição:} Buscar eventos associados a um animal específico e o trecho onde ocorreu.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento ?animal ?trecho WHERE { ?evento rdf:type taim:EventoAtropelamento . ?evento taim:envolveAnimal ?animal . ?evento taim:ocorreEm ?trecho . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+evento: Acidente_Taim_001 | animal: Maçarico_2 | trecho: BR471_KM_28
+evento: Acidente_Taim_002 | animal: Rã_5 | trecho: BR471_KM_26
+evento: Acidente_Taim_003 | animal: Tachã_2 | trecho: BR471_KM_14
+evento: Acidente_Taim_004 | animal: Capivara_1 | trecho: BR471_KM_13
+evento: Acidente_Taim_005 | animal: Jacaré-de-papo-amarelo_2 | trecho: BR471_KM_24
+evento: Acidente_Taim_006 | animal: Rã_5 | trecho: BR471_KM_11
+evento: Acidente_Taim_007 | animal: Tuco-tuco_4 | trecho: BR471_KM_20
+evento: Acidente_Taim_008 | animal: Cisne-de-pescoço-preto_3 | trecho: BR471_KM_11
+evento: Acidente_Taim_009 | animal: Jacaré-de-papo-amarelo_3 | trecho: BR471_KM_10
+evento: Acidente_Taim_0010 | animal: Capivara_3 | trecho: BR471_KM_18
+... (e mais 50 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 8}
+
+\textbf{Descrição:} Descobrir em quais habitats os animais acidentados costumam viver.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT DISTINCT ?animal ?habitat WHERE { ?evento rdf:type taim:EventoAtropelamento . ?evento taim:envolveAnimal ?animal . ?animal taim:viveEm ?habitat . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+animal: Maçarico_2 | habitat: Banhado_do_Nicola
+animal: Rã_5 | habitat: Banhado_da_Mangueira
+animal: Tachã_2 | habitat: Banhado_do_Nicola
+animal: Capivara_1 | habitat: Banhado_Central
+animal: Jacaré-de-papo-amarelo_2 | habitat: Banhado_do_Nicola
+animal: Tuco-tuco_4 | habitat: Banhado_da_Mangueira
+animal: Cisne-de-pescoço-preto_3 | habitat: Banhado_Central
+animal: Jacaré-de-papo-amarelo_3 | habitat: Banhado_do_Nicola
+animal: Capivara_3 | habitat: Banhado_da_Mangueira
+animal: Capivara_2 | habitat: Banhado_Central
+... (e mais 25 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 9}
+
+\textbf{Descrição:} Listar trechos de rodovia, seus acidentes e as condições climáticas exatas no momento.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho ?evento ?clima WHERE { ?evento taim:ocorreEm ?trecho . ?evento taim:ocorreSob ?clima . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_28 | evento: Acidente_Taim_001 | clima: Clima_Neblina_Densa_1
+trecho: BR471_KM_28 | evento: Acidente_Taim_0016 | clima: Clima_Chuva_Forte_0
+trecho: BR471_KM_28 | evento: Acidente_Taim_0022 | clima: Clima_Chuva_Forte_0
+trecho: BR471_KM_28 | evento: Acidente_Taim_0030 | clima: Clima_Chuva_Forte_0
+trecho: BR471_KM_28 | evento: Acidente_Taim_0034 | clima: Clima_Neblina_Densa_1
+trecho: BR471_KM_28 | evento: Acidente_Taim_0035 | clima: Clima_Ensolarado_2
+trecho: BR471_KM_28 | evento: Acidente_Taim_0041 | clima: Clima_Neblina_Densa_1
+trecho: BR471_KM_26 | evento: Acidente_Taim_002 | clima: Clima_Chuva_Forte_0
+trecho: BR471_KM_26 | evento: Acidente_Taim_0011 | clima: Clima_Chuva_Forte_0
+trecho: BR471_KM_26 | evento: Acidente_Taim_0026 | clima: Clima_Neblina_Densa_1
+... (e mais 50 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 10}
+
+\textbf{Descrição:} Buscar trechos de rodovia que registraram acidentes e também estão próximos a um banhado.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho ?evento ?banhado WHERE { ?evento taim:ocorreEm ?trecho . ?trecho taim:proximoA ?banhado . ?banhado rdf:type taim:Banhado . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_10 | evento: Acidente_Taim_009 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0014 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0017 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0019 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0024 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0050 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0058 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_10 | evento: Acidente_Taim_0059 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_13 | evento: Acidente_Taim_004 | banhado: Banhado_da_Mangueira
+trecho: BR471_KM_15 | evento: Acidente_Taim_0031 | banhado: Banhado_da_Mangueira
+... (e mais 50 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 11}
+
+\textbf{Descrição:} Listar animais que atravessaram a rodovia e se envolveram em um acidente.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?animal ?evento WHERE { ?animal taim:atravessa ?trecho . ?evento taim:envolveAnimal ?animal . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+animal: Capivara_1 | evento: Acidente_Taim_004
+animal: Capivara_1 | evento: Acidente_Taim_0031
+animal: Capivara_1 | evento: Acidente_Taim_0052
+animal: Capivara_1 | evento: Acidente_Taim_004
+animal: Capivara_1 | evento: Acidente_Taim_0031
+animal: Capivara_1 | evento: Acidente_Taim_0052
+animal: Tuco-tuco_2 | evento: Acidente_Taim_0013
+animal: Tuco-tuco_2 | evento: Acidente_Taim_0044
+animal: Tuco-tuco_2 | evento: Acidente_Taim_0060
+animal: Cisne-de-pescoço-preto_1 | evento: Acidente_Taim_0033
+... (e mais 109 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 12}
+
+\textbf{Descrição:} Listar animais mamíferos, o evento associado e o trecho onde ocorreu.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?mamifero ?evento ?trecho WHERE { ?mamifero rdf:type taim:Mamifero . ?evento taim:envolveAnimal ?mamifero . ?evento taim:ocorreEm ?trecho . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+mamifero: Capivara_1 | evento: Acidente_Taim_004 | trecho: BR471_KM_13
+mamifero: Capivara_1 | evento: Acidente_Taim_0031 | trecho: BR471_KM_15
+mamifero: Capivara_1 | evento: Acidente_Taim_0052 | trecho: BR471_KM_22
+mamifero: Capivara_2 | evento: Acidente_Taim_0012 | trecho: BR471_KM_27
+mamifero: Capivara_2 | evento: Acidente_Taim_0054 | trecho: BR471_KM_19
+mamifero: Capivara_3 | evento: Acidente_Taim_0010 | trecho: BR471_KM_18
+mamifero: Tuco-tuco_1 | evento: Acidente_Taim_0057 | trecho: BR471_KM_24
+mamifero: Tuco-tuco_2 | evento: Acidente_Taim_0013 | trecho: BR471_KM_22
+mamifero: Tuco-tuco_2 | evento: Acidente_Taim_0044 | trecho: BR471_KM_22
+mamifero: Tuco-tuco_2 | evento: Acidente_Taim_0060 | trecho: BR471_KM_15
+... (e mais 11 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsection*{Categoria: Filtros}
+
+\subsubsection*{Consulta 13}
+
+\textbf{Descrição:} Listar eventos ocorridos em clima frio (Temperatura Celsius < 15°C).
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento ?temp WHERE { ?evento taim:ocorreSob ?clima . ?clima taim:temperaturaCelsius ?temp . FILTER(?temp < 15) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+evento: Acidente_Taim_009 | temp: 9.772219606289214
+evento: Acidente_Taim_0014 | temp: 9.772219606289214
+evento: Acidente_Taim_0021 | temp: 9.772219606289214
+evento: Acidente_Taim_0024 | temp: 9.772219606289214
+evento: Acidente_Taim_0029 | temp: 9.772219606289214
+evento: Acidente_Taim_0033 | temp: 9.772219606289214
+evento: Acidente_Taim_0039 | temp: 9.772219606289214
+evento: Acidente_Taim_0040 | temp: 9.772219606289214
+evento: Acidente_Taim_0043 | temp: 9.772219606289214
+evento: Acidente_Taim_0051 | temp: 9.772219606289214
+... (e mais 1 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 14}
+
+\textbf{Descrição:} Listar acidentes de severidade 'Fatal'.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento WHERE { ?evento taim:severidadeAcidente ?severidade . FILTER(str(?severidade) = 'Fatal') }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+evento: Acidente_Taim_003
+evento: Acidente_Taim_004
+evento: Acidente_Taim_005
+evento: Acidente_Taim_006
+evento: Acidente_Taim_007
+evento: Acidente_Taim_008
+evento: Acidente_Taim_0010
+evento: Acidente_Taim_0015
+evento: Acidente_Taim_0018
+evento: Acidente_Taim_0019
+... (e mais 8 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 15}
+
+\textbf{Descrição:} Listar trechos de rodovia antes do KM 20.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho ?km WHERE { ?trecho taim:kmRodovia ?km . FILTER(?km < 20) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_10 | km: 10.0
+trecho: BR471_KM_11 | km: 11.0
+trecho: BR471_KM_12 | km: 12.0
+trecho: BR471_KM_13 | km: 13.0
+trecho: BR471_KM_14 | km: 14.0
+trecho: BR471_KM_15 | km: 15.0
+trecho: BR471_KM_16 | km: 16.0
+trecho: BR471_KM_17 | km: 17.0
+trecho: BR471_KM_18 | km: 18.0
+trecho: BR471_KM_19 | km: 19.0
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 16}
+
+\textbf{Descrição:} Listar habitats com nível de água perigosamente alto (Nível > 2 metros).
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?habitat ?nivel WHERE { ?habitat taim:nivelAguaMetro ?nivel . FILTER(?nivel > 2) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+habitat: Banhado_da_Mangueira | nivel: 2.1163792361009595
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 17}
+
+\textbf{Descrição:} Listar eventos envolvendo apenas Capivaras (filtragem por string no nome comum).
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento ?nome WHERE { ?evento taim:envolveAnimal ?animal . ?animal taim:nomeComum ?nome . FILTER(str(?nome) = 'Capivara') }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+evento: Acidente_Taim_004 | nome: Capivara
+evento: Acidente_Taim_0031 | nome: Capivara
+evento: Acidente_Taim_0052 | nome: Capivara
+evento: Acidente_Taim_0012 | nome: Capivara
+evento: Acidente_Taim_0054 | nome: Capivara
+evento: Acidente_Taim_0010 | nome: Capivara
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 18}
+
+\textbf{Descrição:} Listar eventos de atropelamento ocorridos em altas temperaturas (> 30°C).
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento ?temp WHERE { ?evento taim:ocorreSob ?clima . ?clima taim:temperaturaCelsius ?temp . FILTER(?temp > 30) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+Zero resultados encontrados.
+\end{lstlisting}
+
+\vspace{1cm}
+\subsection*{Categoria: Agregação}
+
+\subsubsection*{Consulta 19}
+
+\textbf{Descrição:} Contar o número total de eventos de atropelamento.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT (COUNT(?evento) AS ?totalAcidentes) WHERE { ?evento rdf:type taim:EventoAtropelamento . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+totalAcidentes: 60
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 20}
+
+\textbf{Descrição:} Contar o número de animais vitimados agrupados por habitat em que vivem.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?habitat (COUNT(?animal) AS ?totalAnimais) WHERE { ?animal taim:viveEm ?habitat . ?evento taim:envolveAnimal ?animal . } GROUP BY ?habitat
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+habitat: Banhado_Central | totalAnimais: 17
+habitat: Banhado_da_Mangueira | totalAnimais: 19
+habitat: Banhado_do_Nicola | totalAnimais: 24
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 21}
+
+\textbf{Descrição:} Contar o número de acidentes agrupados por Trecho de Rodovia.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho (COUNT(?evento) AS ?totalAcidentes) WHERE { ?evento taim:ocorreEm ?trecho . } GROUP BY ?trecho
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_28 | totalAcidentes: 7
+trecho: BR471_KM_26 | totalAcidentes: 6
+trecho: BR471_KM_14 | totalAcidentes: 2
+trecho: BR471_KM_13 | totalAcidentes: 1
+trecho: BR471_KM_24 | totalAcidentes: 3
+trecho: BR471_KM_11 | totalAcidentes: 5
+trecho: BR471_KM_20 | totalAcidentes: 2
+trecho: BR471_KM_10 | totalAcidentes: 8
+trecho: BR471_KM_18 | totalAcidentes: 4
+trecho: BR471_KM_27 | totalAcidentes: 2
+... (e mais 8 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 22}
+
+\textbf{Descrição:} Descobrir a temperatura máxima registrada nos eventos.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT (MAX(?temp) AS ?maxTemp) WHERE { ?evento taim:ocorreSob ?clima . ?clima taim:temperaturaCelsius ?temp . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+maxTemp: 24.478338955648415
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 23}
+
+\textbf{Descrição:} Descobrir o KM médio onde os acidentes ocorrem.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT (AVG(?km) AS ?kmMedio) WHERE { ?evento taim:ocorreEm ?trecho . ?trecho taim:kmRodovia ?km . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+kmMedio: 19.68333333333333333333333333
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 24}
+
+\textbf{Descrição:} Contar o número de acidentes que foram fatais.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT (COUNT(?evento) AS ?fatais) WHERE { ?evento taim:severidadeAcidente ?sev . FILTER(str(?sev) = 'Fatal') }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+fatais: 18
+\end{lstlisting}
+
+\vspace{1cm}
+\subsection*{Categoria: Cenário}
+
+\subsubsection*{Consulta 25}
+
+\textbf{Descrição:} Cenário de Risco Crítico: Quais rodovias acumularam chuva forte (Temperatura < 20°C) e tiveram acidentes fatais?
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho ?temp ?sev WHERE { ?evento taim:ocorreEm ?trecho . ?evento taim:ocorreSob ?clima . ?clima taim:temperaturaCelsius ?temp . ?evento taim:severidadeAcidente ?sev . FILTER(?temp < 20 && str(?sev) = 'Fatal') }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_13 | temp: 15.191119079497632 | sev: Fatal
+trecho: BR471_KM_11 | temp: 15.191119079497632 | sev: Fatal
+trecho: BR471_KM_20 | temp: 15.191119079497632 | sev: Fatal
+trecho: BR471_KM_10 | temp: 15.191119079497632 | sev: Fatal
+trecho: BR471_KM_26 | temp: 15.191119079497632 | sev: Fatal
+trecho: BR471_KM_14 | temp: 18.509518090974588 | sev: Fatal
+trecho: BR471_KM_24 | temp: 18.509518090974588 | sev: Fatal
+trecho: BR471_KM_11 | temp: 18.509518090974588 | sev: Fatal
+trecho: BR471_KM_18 | temp: 18.509518090974588 | sev: Fatal
+trecho: BR471_KM_29 | temp: 18.509518090974588 | sev: Fatal
+... (e mais 5 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 26}
+
+\textbf{Descrição:} Cenário de Deslocamento Animal: Quais animais aquáticos (Aves) sofreram acidentes em KMs próximos ao Banhado da Mangueira?
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?ave ?trecho WHERE { ?ave rdf:type taim:Ave . ?evento taim:envolveAnimal ?ave . ?evento taim:ocorreEm ?trecho . ?trecho taim:proximoA ?habitat . FILTER(REGEX(str(?habitat), 'Mangueira', 'i')) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+ave: Cisne-de-pescoço-preto_1 | trecho: BR471_KM_15
+ave: Cisne-de-pescoço-preto_2 | trecho: BR471_KM_20
+ave: Cisne-de-pescoço-preto_2 | trecho: BR471_KM_10
+ave: Cisne-de-pescoço-preto_5 | trecho: BR471_KM_10
+ave: Maçarico_4 | trecho: BR471_KM_26
+ave: Tachã_1 | trecho: BR471_KM_10
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 27}
+
+\textbf{Descrição:} Cenário de Prevenção: Obter a lista de trechos com acidentes de grandes mamíferos (Capivara) para possível instalação de placas.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT DISTINCT ?trecho WHERE { ?evento taim:ocorreEm ?trecho . ?evento taim:envolveAnimal ?animal . ?animal rdf:type taim:Capivara . }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+Zero resultados encontrados.
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 28}
+
+\textbf{Descrição:} Cenário Hidrológico: Animais atropelados perto de habitats com nível de água muito alto (risco de inundação forçando fuga).
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?animal ?nivel WHERE { ?evento taim:envolveAnimal ?animal . ?animal taim:viveEm ?habitat . ?habitat taim:nivelAguaMetro ?nivel . FILTER(?nivel >= 2.0) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+animal: Capivara_3 | nivel: 2.1163792361009595
+animal: Tuco-tuco_3 | nivel: 2.1163792361009595
+animal: Tuco-tuco_3 | nivel: 2.1163792361009595
+animal: Tuco-tuco_4 | nivel: 2.1163792361009595
+animal: Tuco-tuco_4 | nivel: 2.1163792361009595
+animal: Ratão-do-banhado_1 | nivel: 2.1163792361009595
+animal: Ratão-do-banhado_1 | nivel: 2.1163792361009595
+animal: Ratão-do-banhado_3 | nivel: 2.1163792361009595
+animal: Ratão-do-banhado_3 | nivel: 2.1163792361009595
+animal: Cisne-de-pescoço-preto_1 | nivel: 2.1163792361009595
+... (e mais 9 resultados ocultados por brevidade)
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 29}
+
+\textbf{Descrição:} Cenário de Rota Segura: Encontrar trechos da BR-471 (KM > 25) que não possuem banhados próximos com níveis altos de água.
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?trecho ?km WHERE { ?trecho taim:kmRodovia ?km . ?trecho taim:proximoA ?habitat . ?habitat taim:nivelAguaMetro ?nivel . FILTER(?km > 25 && ?nivel < 1.0) }
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+trecho: BR471_KM_29 | km: 29.0
+\end{lstlisting}
+
+\vspace{1cm}
+\subsubsection*{Consulta 30}
+
+\textbf{Descrição:} Cenário Investigativo: Resumo completo de um evento (Qual o animal envolvido, em qual km da rodovia e sob qual clima).
+
+\textbf{Código SPARQL:}
+\begin{lstlisting}
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX taim: <http://www.exemplo.org/taim#>
+SELECT ?evento ?animal ?km ?temp WHERE { ?evento taim:envolveAnimal ?animal . ?evento taim:ocorreEm ?trecho . ?trecho taim:kmRodovia ?km . ?evento taim:ocorreSob ?clima . ?clima taim:temperaturaCelsius ?temp . } LIMIT 5
+\end{lstlisting}
+
+\textbf{Resultados Obtidos:}
+\begin{lstlisting}
+evento: Acidente_Taim_001 | animal: Maçarico_2 | km: 28.0 | temp: 15.191119079497632
+evento: Acidente_Taim_0016 | animal: Maçarico_5 | km: 28.0 | temp: 18.509518090974588
+evento: Acidente_Taim_0022 | animal: Ratão-do-banhado_5 | km: 28.0 | temp: 18.509518090974588
+evento: Acidente_Taim_0030 | animal: Tachã_4 | km: 28.0 | temp: 18.509518090974588
+evento: Acidente_Taim_0034 | animal: Jacaré-de-papo-amarelo_3 | km: 28.0 | temp: 15.191119079497632
+\end{lstlisting}
+
+\vspace{1cm}
+
+
+\end{document}
