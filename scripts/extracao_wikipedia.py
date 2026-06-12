@@ -11,7 +11,6 @@ ESPECIES_ALVO = {
 }
 
 def obter_html_wikipedia(url: str) -> str:
-    # NLP extraction necessita tratar possiveis falhas de rede
     headers = {'User-Agent': 'TrabalhoAcademicoBot/1.0 (lucas@example.com)'}
     resposta = requests.get(url, headers=headers, timeout=10)
     resposta.raise_for_status()

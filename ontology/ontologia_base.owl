@@ -110,6 +110,21 @@
   <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
 </owl:DatatypeProperty>
 
+<owl:DatatypeProperty rdf:about="#estacaoAno">
+  <rdfs:domain rdf:resource="#EventoAtropelamento"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#fluxoVeiculosHora">
+  <rdfs:domain rdf:resource="#TrechoRodovia"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+</owl:DatatypeProperty>
+
+<owl:DatatypeProperty rdf:about="#visibilidadeMetros">
+  <rdfs:domain rdf:resource="#CondicaoClimatica"/>
+  <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+</owl:DatatypeProperty>
+
 <owl:Class rdf:about="#Animal">
   <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
 </owl:Class>
@@ -128,6 +143,66 @@
 
 <owl:Class rdf:about="#Anfibio">
   <rdfs:subClassOf rdf:resource="#Animal"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Capivara">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tuco-tuco">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Ratão-do-banhado">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Graxaim">
+  <rdfs:subClassOf rdf:resource="#Mamifero"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Cisne-de-pescoço-preto">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Flamingo">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Colhereiro">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Maçarico">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tachã">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Garça-moura">
+  <rdfs:subClassOf rdf:resource="#Ave"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Jacaré-de-papo-amarelo">
+  <rdfs:subClassOf rdf:resource="#Reptil"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Tartaruga">
+  <rdfs:subClassOf rdf:resource="#Reptil"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Cobra">
+  <rdfs:subClassOf rdf:resource="#Reptil"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Sapo">
+  <rdfs:subClassOf rdf:resource="#Anfibio"/>
+</owl:Class>
+
+<owl:Class rdf:about="#Rã">
+  <rdfs:subClassOf rdf:resource="#Anfibio"/>
 </owl:Class>
 
 <owl:Class rdf:about="#Habitat">
@@ -152,6 +227,20 @@
 
 <owl:Class rdf:about="#TrechoRodovia">
   <rdfs:subClassOf rdf:resource="#Rodovia"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#pertenceARodovia"/>
+      <owl:onClass rdf:resource="#Rodovia"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#kmRodovia"/>
+      <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
 </owl:Class>
 
 <owl:Class rdf:about="#CondicaoAmbiental">
@@ -168,6 +257,41 @@
 
 <owl:Class rdf:about="#EventoAtropelamento">
   <rdfs:subClassOf rdf:resource="#Evento"/>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#envolveAnimal"/>
+      <owl:onClass rdf:resource="#Animal"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#ocorreEm"/>
+      <owl:onClass rdf:resource="#TrechoRodovia"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#ocorreSob"/>
+      <owl:onClass rdf:resource="#CondicaoClimatica"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#severidadeAcidente"/>
+      <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
+  <rdfs:subClassOf>
+    <owl:Restriction>
+      <owl:onProperty rdf:resource="#dataHora"/>
+      <owl:onDataRange rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+      <owl:qualifiedCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:qualifiedCardinality>
+    </owl:Restriction>
+  </rdfs:subClassOf>
 </owl:Class>
 
 

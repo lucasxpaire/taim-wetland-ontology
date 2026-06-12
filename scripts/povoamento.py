@@ -15,7 +15,7 @@ def instanciar_habitats(onto):
     habitats_criados = []
     nomes_banhados = ["Banhado_da_Mangueira", "Banhado_do_Nicola", "Banhado_Central"]
     
-    for i, nome in enumerate(nomes_banhados):
+    for nome in nomes_banhados:
         banhado = onto.Banhado(nome)
         banhado.nivelAguaMetro = [random.uniform(0.5, 2.5)]
         habitats_criados.append(banhado)
@@ -30,6 +30,7 @@ def instanciar_infraestrutura(onto, habitats):
         trecho.kmRodovia = [float(km)]
         trecho.latitude = [random.uniform(-32.0, -33.0)]
         trecho.longitude = [random.uniform(-52.0, -53.0)]
+        trecho.fluxoVeiculosHora = [random.randint(10, 300)]
         
         # Relaciona o trecho a um habitat proximo
         habitat_vizinho = random.choice(habitats)
@@ -42,7 +43,6 @@ def instanciar_infraestrutura(onto, habitats):
 def instanciar_animais_reais(onto, animais_validados, habitats):
     animais_criados = []
     
-    # Mapeamento do nome da classe em string para a Classe Owlready2
     mapa_classes = {
         "Mamifero": onto.Mamifero,
         "Ave": onto.Ave,
@@ -51,9 +51,11 @@ def instanciar_animais_reais(onto, animais_validados, habitats):
     }
     
     for classe_texto, especies in animais_validados.items():
-        ClasseOntologia = mapa_classes.get(classe_texto, onto.Animal)
-        
         for especie in especies:
+            ClasseOntologia = onto[especie]
+            if ClasseOntologia is None:
+                ClasseOntologia = mapa_classes.get(classe_texto, onto.Animal)
+            
             # Cria 5 individuos de cada especie
             for i in range(1, 6):
                 animal = ClasseOntologia(f"{especie.replace(' ', '_')}_{i}")
@@ -69,11 +71,17 @@ def instanciar_animais_reais(onto, animais_validados, habitats):
 
 def instanciar_condicoes_climaticas(onto):
     condicoes = []
-    tipos = ["Chuva_Forte", "Neblina_Densa", "Ensolarado", "Nublado"]
+    tipos_visibilidade = {
+        "Chuva_Forte": (50.0, 300.0),
+        "Neblina_Densa": (20.0, 150.0),
+        "Ensolarado": (1000.0, 5000.0),
+        "Nublado": (500.0, 2000.0)
+    }
     
-    for i, tipo in enumerate(tipos):
+    for i, (tipo, faixa) in enumerate(tipos_visibilidade.items()):
         clima = onto.CondicaoClimatica(f"Clima_{tipo}_{i}")
         clima.temperaturaCelsius = [random.uniform(5.0, 35.0)]
+        clima.visibilidadeMetros = [random.uniform(*faixa)]
         condicoes.append(clima)
         
     return condicoes
@@ -83,6 +91,17 @@ def gerar_data_aleatoria():
     dias_aleatorios = random.randint(0, 365)
     horas_aleatorias = random.randint(0, 23)
     return inicio + timedelta(days=dias_aleatorios, hours=horas_aleatorias)
+
+def obter_estacao_sul(data: datetime) -> str:
+    mes = data.month
+    if mes in [12, 1, 2]:
+        return "Verão"
+    elif mes in [3, 4, 5]:
+        return "Outono"
+    elif mes in [6, 7, 8]:
+        return "Inverno"
+    else:
+        return "Primavera"
 
 def instanciar_eventos_atropelamento(onto, animais, trechos, condicoes):
     eventos_criados = []
@@ -104,7 +123,9 @@ def instanciar_eventos_atropelamento(onto, animais, trechos, condicoes):
         animal_vitima.atravessa.append(trecho_local)
         
         # Propriedades de Dados
-        evento.dataHora = [gerar_data_aleatoria()]
+        data_evento = gerar_data_aleatoria()
+        evento.dataHora = [data_evento]
+        evento.estacaoAno = [obter_estacao_sul(data_evento)]
         evento.severidadeAcidente = [random.choice(["Fatal", "Ferimento_Leve", "Fuga"])]
         
         eventos_criados.append(evento)

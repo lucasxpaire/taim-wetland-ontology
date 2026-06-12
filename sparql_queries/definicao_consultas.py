@@ -1,5 +1,6 @@
 PREFIXOS = """
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX taim: <http://www.exemplo.org/taim#>
 """
 
@@ -70,7 +71,7 @@ def obter_todas_as_consultas():
         {
             "categoria": "Múltiplas Relações",
             "descricao": "Listar animais mamíferos, o evento associado e o trecho onde ocorreu.",
-            "codigo": PREFIXOS + "SELECT ?mamifero ?evento ?trecho WHERE { ?mamifero rdf:type taim:Mamifero . ?evento taim:envolveAnimal ?mamifero . ?evento taim:ocorreEm ?trecho . }"
+            "codigo": PREFIXOS + "SELECT ?mamifero ?evento ?trecho WHERE { ?mamifero rdf:type/rdfs:subClassOf* taim:Mamifero . ?evento taim:envolveAnimal ?mamifero . ?evento taim:ocorreEm ?trecho . }"
         }
     ])
 
@@ -152,7 +153,7 @@ def obter_todas_as_consultas():
         {
             "categoria": "Cenário",
             "descricao": "Cenário de Deslocamento Animal: Quais animais aquáticos (Aves) sofreram acidentes em KMs próximos ao Banhado da Mangueira?",
-            "codigo": PREFIXOS + "SELECT ?ave ?trecho WHERE { ?ave rdf:type taim:Ave . ?evento taim:envolveAnimal ?ave . ?evento taim:ocorreEm ?trecho . ?trecho taim:proximoA ?habitat . FILTER(REGEX(str(?habitat), 'Mangueira', 'i')) }"
+            "codigo": PREFIXOS + "SELECT ?ave ?trecho WHERE { ?ave rdf:type/rdfs:subClassOf* taim:Ave . ?evento taim:envolveAnimal ?ave . ?evento taim:ocorreEm ?trecho . ?trecho taim:proximoA ?habitat . FILTER(REGEX(str(?habitat), 'Mangueira', 'i')) }"
         },
         {
             "categoria": "Cenário",
